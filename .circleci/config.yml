@@ -15,7 +15,17 @@ jobs:
       - print_pipeline_id:
           id: << pipeline.id >>
     
+  my_job2:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id:
+          id: << pipeline_id >>
+    when: on_fail
+    
 workflows:
   my_workflow:
     jobs:
       - my_job
+      - my-job2:
+          dependson: my_job
