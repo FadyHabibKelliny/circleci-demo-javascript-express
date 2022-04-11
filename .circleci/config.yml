@@ -1,8 +1,11 @@
 version: 2.1
 commands:
   print_pipeline_id:
+    parameters:
+      id:
+        type: string
     steps:
-      - run: echo ${CIRCLE_WORKFLOW_ID}
+      - run: echo << parameters.id >>
 
 job:
   my_job:
