@@ -1,6 +1,5 @@
 version: 2.1
-
-jobs:
+commands:
   sayhello:
     description: "A very simple command for demonstration purposes"
     parameters:
@@ -9,3 +8,15 @@ jobs:
         default: "Hello World"
     steps:
       - run: echo << parameters.to >>
+      
+job:
+  my_job:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id
+    
+workflow:
+  my_workflow:
+    jobs:
+      - my_job
